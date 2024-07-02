@@ -10,7 +10,7 @@ import java.util.Scanner;
 
 public class UserView {
     private final UserController userController;
-
+    private static Scanner scanner = new Scanner(System.in);
     public UserView() {
         this.userController = new UserController();
     }
@@ -68,8 +68,8 @@ public class UserView {
         System.out.println("-".repeat(115));
     }
 
+
     private void createStudent() {
-        Scanner scanner = new Scanner(System.in);
 
         Student newStudent = new Student();
 
@@ -110,15 +110,14 @@ public class UserView {
             System.out.println("1. Display All User");
             System.out.println("2. Display Student");
             System.out.println("3. Display Teacher");
-            System.out.println("4. Add User");
-            System.out.println("5. Add Student");
-            System.out.println("6. Add Teacher");
-            System.out.println("7. Update User");
-            System.out.println("8. Update Student");
-            System.out.println("9. Update Teacher");
-            System.out.println("10. Delete User");
-            System.out.println("11. Delete Student");
-            System.out.println("12. Delete Teacher");
+            System.out.println("4. Add Student");
+            System.out.println("5. Add Teacher");
+            System.out.println("6. Update User");
+            System.out.println("7. Update Student");
+            System.out.println("8. Update Teacher");
+            System.out.println("9. Delete User");
+            System.out.println("10. Delete Student");
+            System.out.println("11. Delete Teacher");
             System.out.println("0. Exit");
             System.out.println("-".repeat(115));
 
@@ -128,7 +127,9 @@ public class UserView {
 
             switch (choice) {
                 case 0:
-                    System.out.println("Exiting...");
+                    System.out.println("*".repeat(20));
+                    System.out.println("Good Bye!!");
+                    System.out.println("*".repeat(20));
                     isNext = false;
                     break;
                 case 1:
@@ -141,8 +142,10 @@ public class UserView {
                     readTeacherData();
                     break;
                 case 4:
+                    createStudent();
                     break;
                 case 5:
+                    createTeacher();
                     break;
                 case 6:
                     break;
@@ -164,9 +167,14 @@ public class UserView {
             }
 
             if (choice != 0) {
-                System.out.print("Do you want to continue? (true/false): ");
-                isNext = scanner.nextBoolean();
-                scanner.nextLine();
+                System.out.print("Press Enter to continue or type any other key to exit!!");
+                String input = scanner.nextLine();
+                if (!input.isEmpty()) {
+                    isNext = false;
+                    System.out.println("*".repeat(20));
+                    System.out.println("Good Bye!!");
+                    System.out.println("*".repeat(20));
+                }
             }
         } while (isNext);
         scanner.close();

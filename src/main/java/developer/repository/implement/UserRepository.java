@@ -25,12 +25,13 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public void save(User user) {
-        String sql = "INSERT INTO Users (id, name, email, password) VALUES (?, ?, ?, ?)";
+        String sql = "INSERT INTO Users (id, name, email, password, role) VALUES (?, ?, ?, ?,?)";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, user.getId());
             stmt.setString(2, user.getName());
             stmt.setString(3, user.getEmail());
             stmt.setString(4, user.getPassword());
+            stmt.setString(5, user.getRole());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

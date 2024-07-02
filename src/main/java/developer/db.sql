@@ -12,6 +12,7 @@ create table Users
     name     varchar(255) not null,
     email    varchar(255) not null,
     password varchar(255) not null,
+    role     varchar(20)  not null,
     constraint email
         unique (email)
 );

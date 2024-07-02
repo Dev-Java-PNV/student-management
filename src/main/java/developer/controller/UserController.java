@@ -38,13 +38,11 @@ public class UserController {
         teacher.setTeacherId(
                 "TC-"+UUID.randomUUID().toString()
         );
+        teacher.setRole(
+                "teacher"
+        );
         userService.createTeacher(teacher);
         System.out.println("Created teacher: " + teacher.getName());
-    }
-
-    public void createUser(User user) {
-        userService.createUser(user);
-        System.out.println("Creating user: " + user.getName());
     }
 
     public User getUser(String id) {

@@ -15,6 +15,7 @@ public class UserMapper implements IEntityMapper<User> {
         user.setName(rs.getString("name"));
         user.setEmail(rs.getString("email"));
         user.setPassword(rs.getString("password"));
+        user.setRole(rs.getString("role"));
         return user;
     }
 }

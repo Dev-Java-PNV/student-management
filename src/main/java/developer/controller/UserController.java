@@ -24,6 +24,9 @@ public class UserController {
         student.setStudentId(
                 "ST-"+UUID.randomUUID().toString()
         );
+        student.setRole(
+                "student"
+        );
         userService.createStudent(student);
         System.out.println("Created student: " + student.getName());
     }

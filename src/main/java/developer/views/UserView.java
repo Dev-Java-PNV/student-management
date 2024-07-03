@@ -21,16 +21,16 @@ public class UserView {
         System.out.println("Student Data:");
         System.out.println("*".repeat(20));
 
-        System.out.println("-".repeat(115));
-        System.out.printf("%-10s | %-30s | %-30s | %-20s | %-30s%n", "ID", "Name", "Email", "Password","Role");
-        System.out.println("-".repeat(115));
+        System.out.println("-".repeat(150));
+        System.out.printf("%-40s | %-30s | %-30s | %-20s | %-30s%n", "ID", "Name", "Email", "Password","Role");
+        System.out.println("-".repeat(150));
         for (User user : users) {
             if (user.getRole().equals("student")) {
-                System.out.printf("%-10s | %-30s | %-30s | %-20s | %-30s%n",
-                        truncate(user.getId(),10), truncate(user.getName(),30), truncate(user.getEmail(),30), truncate(user.getPassword(),30), truncate(user.getRole(),30));
+                System.out.printf("%-40s | %-30s | %-30s | %-20s | %-30s%n",
+                        (user.getId()), truncate(user.getName(),30), truncate(user.getEmail(),30), truncate(user.getPassword(),30), truncate(user.getRole(),30));
             }
         }
-        System.out.println("-".repeat(115));
+        System.out.println("-".repeat(150));
 
     }
     private void readTeacherData(){
@@ -40,16 +40,16 @@ public class UserView {
         System.out.println("Teacher Data:");
         System.out.println("*".repeat(20));
 
-        System.out.println("-".repeat(115));
-        System.out.printf("%-10s | %-30s | %-30s | %-20s | %-30s%n", "ID", "Name", "Email", "Password","Role");
-        System.out.println("-".repeat(115));
+        System.out.println("-".repeat(150));
+        System.out.printf("%-40s | %-30s | %-30s | %-20s | %-30s%n", "ID", "Name", "Email", "Password","Role");
+        System.out.println("-".repeat(150));
         for (User user : users) {
             if (user.getRole().equals("teacher")) {
-                System.out.printf("%-10s | %-30s | %-30s | %-20s | %-30s%n",
-                        truncate(user.getId(),10), truncate(user.getName(),30), truncate(user.getEmail(),30), truncate(user.getPassword(),30), truncate(user.getRole(),30));
+                System.out.printf("%-40s | %-30s | %-30s | %-20s | %-30s%n",
+                        (user.getId()), truncate(user.getName(),30), truncate(user.getEmail(),30), truncate(user.getPassword(),30), truncate(user.getRole(),30));
             }
         }
-        System.out.println("-".repeat(115));
+        System.out.println("-".repeat(150));
 
     }
     private void readAllUserData() {
@@ -118,6 +118,9 @@ public class UserView {
         System.out.println("Enter Student ID: ");
         String Id = scanner.nextLine();
         User user = getByID(Id);
+        if (user==null){
+            return;
+        }
         updateChoice(user);
     }
     private void updateStudentData() {
@@ -125,6 +128,9 @@ public class UserView {
         System.out.println("Enter Student ID: ");
         String Id = scanner.nextLine();
         User user = getByID(Id);
+        if (user==null){
+            return;
+        }
         updateChoice(user);
     }
     private User getByID(String Id){
@@ -145,6 +151,9 @@ public class UserView {
         System.out.println("Enter Student ID: ");
         String Id = scanner.nextLine();
         User user = getByID(Id);
+        if (user==null){
+            return;
+        }
         updateChoice(user);
     }
     private void updateChoice(User user){
@@ -239,6 +248,24 @@ public class UserView {
         userController.updateUser(user);
         System.out.println("Role updated successfully.");
     }
+    private void deleteUser(){
+        readListIdUser();
+        System.out.println("Enter User ID: ");
+        String Id = scanner.nextLine();
+        userController.deleteUser(Id);
+    }
+    private void deleteStudent(){
+        readStudentData();
+        System.out.println("Enter Student ID: ");
+        String Id = scanner.nextLine();
+        userController.deleteUser(Id);
+    }
+    private void deleteTeacher(){
+        readTeacherData();
+        System.out.println("Enter Teacher ID: ");
+        String Id = scanner.nextLine();
+        userController.deleteUser(Id);
+    }
     public void showMenu() {
         Scanner scanner = new Scanner(System.in);
         boolean isNext = true;
@@ -294,12 +321,13 @@ public class UserView {
                     updateTeacherData();
                     break;
                 case 9:
+                    deleteUser();
                     break;
                 case 10:
+                    deleteStudent();
                     break;
                 case 11:
-                    break;
-                case 12:
+                    deleteTeacher();
                     break;
                 default:
                     System.out.println("Invalid choice. Please enter a valid option.");

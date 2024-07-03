@@ -1,15 +1,18 @@
 package developer.controller;
 
 import developer.model.Course;
+import developer.repository.mapperImplement.CourseMapper;
+import developer.service.implement.CourseService;
 import developer.service.interfaces.ICourseService;
 
 import java.util.List;
+import java.util.UUID;
 
 public class CourseController {
     private final ICourseService courseService;
 
-    public CourseController(ICourseService courseService) {
-        this.courseService = courseService;
+    public CourseController() {
+        this.courseService = new CourseService(new CourseMapper());
     }
 
     public void createCourse(Course course) {

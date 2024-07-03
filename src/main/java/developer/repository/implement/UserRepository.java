@@ -40,12 +40,13 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public void update(User user) {
-        String sql = "UPDATE Users SET name = ?, email = ?, password = ? WHERE id = ?";
+        String sql = "UPDATE Users SET name = ?, email = ?, password = ?, role = ? WHERE id = ?";
         try (PreparedStatement stmt = connection.prepareStatement(sql)) {
             stmt.setString(1, user.getName());
             stmt.setString(2, user.getEmail());
             stmt.setString(3, user.getPassword());
-            stmt.setString(4, user.getId());
+            stmt.setString(4, user.getRole());
+            stmt.setString(5, user.getId());
             stmt.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

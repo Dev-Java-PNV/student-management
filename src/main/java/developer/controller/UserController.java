@@ -55,6 +55,7 @@ public class UserController {
 
     public void deleteUser(String id) {
         userService.deleteUser(id);
+        System.out.println("Delete successfully");
     }
 
     public List<User> getAllUsers() {

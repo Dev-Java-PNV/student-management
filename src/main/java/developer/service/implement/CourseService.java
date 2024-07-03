@@ -2,18 +2,17 @@ package developer.service.implement;
 
 import developer.model.Course;
 import developer.repository.implement.CourseRepository;
-import developer.repository.interfaces.ICourseRepository;
-import developer.repository.mapperImplement.CourseMapper;
+import developer.repository.mapperInterfaces.ICourseMapper;
 import developer.service.interfaces.ICourseService;
 
 import java.util.List;
 
 public class CourseService implements ICourseService {
 
-    private final ICourseRepository courseRepository;
+    private final CourseRepository courseRepository;
 
-    public CourseService(ICourseRepository courseRepository) {
-        this.courseRepository = courseRepository;
+    public CourseService(ICourseMapper courseMapper) {
+        this.courseRepository = new CourseRepository(courseMapper);
     }
 
     @Override

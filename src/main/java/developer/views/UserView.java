@@ -345,7 +345,10 @@ public class UserView {
                 }
             }
         } while (isNext);
-        scanner.close();
+        System.out.println("Home page");
+        System.out.println("1. User View");
+        System.out.println("2. Course View");
+        System.out.println("0. Exit");
     }
     private static String truncate(String str, int v) {
         if (str.length() > v) {
